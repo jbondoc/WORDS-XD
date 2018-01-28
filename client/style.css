@@ -1,0 +1,42 @@
+
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    font-family: Arial, Helvetica;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.left-screen, .right-screen {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+}
+
+.left-screen {
+    background-color: red;
+    left: 0;
+}
+
+.right-screen {
+    background-color: green;
+    right: 0;
+}
+
+.input {
+    position: absolute;
+    top: 70%;
+    width: 100%;
+}
+
+.input input {
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+}
