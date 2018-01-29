@@ -4,10 +4,12 @@ body {
     height: 100%;
     width: 100%;
     background: url('./imgs/bg.jpg');
+    background-size: 100%;
 }
 
 * {
     font-family: Arial, Helvetica;
+    color: white;
     font-size: 14px;
     padding: 0;
     margin: 0;
@@ -30,6 +32,7 @@ body {
 
 .right-screen {
     right: 0;
+    text-align: center;
 }
 
 .input {
@@ -40,6 +43,7 @@ body {
 
 .input input {
     border-radius: 10px;
+    color: black;
     border: 1px solid black;
     padding: 20px;
     text-align: center;
@@ -70,8 +74,10 @@ input:focus {
 }
 
 .letters {
-    text-align: center;
-    width: 100%;
+   position: relative;
+   top: 30%;
+   text-align: center;
+   width: 100%;
 }
 .letter-block {
     position: relative;
@@ -88,4 +94,24 @@ input:focus {
     vertical-align: middle;
     text-align: center;
     margin: 0.5em;
+}
+
+#points-container {
+   position: relative;
+   font-weight: bold;
+   margin: auto;
+   top: 20%;
+}
+#points-container h2 {
+   font-size: 2em;
+}
+
+#points {
+   font-size: 3em;
+}
+
+#result-message {
+   position: relative;
+   top: 60%;
+   font-size: 4em;
 }
