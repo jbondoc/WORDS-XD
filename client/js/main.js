@@ -1,5 +1,6 @@
 let player_points = 0;
 const letter_group = new Array(7);
+const used_letters = new Array(7);
 
 
 document.getElementById('new-letters').addEventListener('click', function(e) {
@@ -83,3 +84,23 @@ function makeLetters() {
    }
    return letters;
 }
+
+$(document).on("keypress", function (e) {
+   if(letter_group.includes(e.key)){
+    console.log(e.key);
+    let letters = document.getElementsByClassName('letters')[0];
+    letters.removeChild(letters.childNodes[letter_group.indexOf(e.key)]);
+    letter_group.splice(letter_group.indexOf(e.key),1);
+    let div = document.createElement('div');
+    div.className = 'letter-block';
+    div.innerHTML = e.key.toUpperCase();
+    let used_letters = document.getElementsByClassName('used-letters')[0];
+    used_letters.appendChild(div);
+
+   }
+   else{
+      console.log("not present");
+   }
+});
+
+

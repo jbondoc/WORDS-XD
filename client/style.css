@@ -75,7 +75,13 @@ input:focus {
 
 .letters {
    position: relative;
-   top: 30%;
+   top: 15%;
+   text-align: center;
+   width: 100%;
+}
+.used-letters {
+   position: relative;
+   top: 15%;
    text-align: center;
    width: 100%;
 }
@@ -94,6 +100,7 @@ input:focus {
     vertical-align: middle;
     text-align: center;
     margin: 0.5em;
+    opacity: 0.6;
 }
 
 #points-container {
