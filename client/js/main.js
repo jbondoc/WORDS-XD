@@ -2,7 +2,7 @@ let player_points = 0;
 var all_letters = new Array(7);
 var letter_group = new Array(7);
 var used_letters = new Array(7);
-var valid_words = [];
+var used_words = [];
 
 
 document.getElementById('new-letters').addEventListener('click', function(e) {
@@ -56,9 +56,10 @@ function isWord(word) {
       if (xhr.readyState == 4) {
        var resp = JSON.parse(xhr.responseText);       
        console.log(resp);
-       if(resp.length > 0 && resp[0].hasOwnProperty('defs')){
+       if(used_words.indexOf(word) <= -1 && resp.length > 0 && resp[0].hasOwnProperty('defs')){
          console.log("LEN > 0");
          console.log("word returned by api is " + resp[0].word);
+         used_words.push(word);
          isWord = true;
        }
        else{
