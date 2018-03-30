@@ -48,25 +48,17 @@ document.getElementById('word-input').addEventListener('keydown', function(e) {
 
 //test words
 function isWord(word) {
-   /*
-   let words = ['hi','bye','to','win','fin','pi','try','lie','ly','ass','as','my','too','boo','moo','vu','i','car','ill','fill','part','pop','stop','wept','pod','pin','win','at','aww','tat','vibe','god','try','in','door','floor'];
-   for (i in words) {
-      if(word == words[i]) {
-         return word.length;
-      } 
-   }
-   return 0;*/
    var isWord;
-   var url = "https://api.datamuse.com/words?sp=" + word;
+   var url = "https://api.datamuse.com/words?sp=" + word + "&max=1&md=d";
    var xhr = new XMLHttpRequest();
    xhr.open("GET", url, false);
    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
-       // JSON.parse does not evaluate the attacker's scripts.
        var resp = JSON.parse(xhr.responseText);       
        console.log(resp);
-       if(resp.length > 0){
+       if(resp.length > 0 && resp[0].hasOwnProperty('defs')){
          console.log("LEN > 0");
+         console.log("word returned by api is " + resp[0].word);
          isWord = true;
        }
        else{
