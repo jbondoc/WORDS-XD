@@ -14,6 +14,8 @@ document.getElementById('new-letters').addEventListener('click', function(e) {
    letter_array.forEach( function (element) {
       letters.appendChild(element);
    });
+   player_points = 0;
+   document.getElementById('points').innerHTML = player_points;
 });
 
 /*
@@ -46,13 +48,35 @@ document.getElementById('word-input').addEventListener('keydown', function(e) {
 
 //test words
 function isWord(word) {
+   /*
    let words = ['hi','bye','to','win','fin','pi','try','lie','ly','ass','as','my','too','boo','moo','vu','i','car','ill','fill','part','pop','stop','wept','pod','pin','win','at','aww','tat','vibe','god','try','in','door','floor'];
    for (i in words) {
       if(word == words[i]) {
          return word.length;
       } 
    }
-   return 0;
+   return 0;*/
+   var isWord;
+   var url = "https://api.datamuse.com/words?sp=" + word;
+   var xhr = new XMLHttpRequest();
+   xhr.open("GET", url, false);
+   xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+       // JSON.parse does not evaluate the attacker's scripts.
+       var resp = JSON.parse(xhr.responseText);       
+       console.log(resp);
+       if(resp.length > 0){
+         console.log("LEN > 0");
+         isWord = true;
+       }
+       else{
+         isWord = false;
+       }
+     }
+   }
+   xhr.send();
+
+   return isWord;
 }
 
 function partOfLetters(letters, word) {
@@ -104,7 +128,8 @@ $(document).on("keypress", function (e) {
    if(e.keyCode == 13){   
       console.log(used_letters.join(''));
       console.log("enter");
-      if(isWord(used_letters.join(''))){
+      if(isWord(used_letters.join('')) == true){
+         console.log("IS A WORD");
          player_points += used_letters.join('').length;
          document.getElementById('points').innerHTML = player_points;
       }
