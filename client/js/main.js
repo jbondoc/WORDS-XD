@@ -1,6 +1,7 @@
 let player_points = 0;
-const letter_group = new Array(7);
-const used_letters = new Array(7);
+var all_letters = new Array(7);
+var letter_group = new Array(7);
+var used_letters = new Array(7);
 
 
 document.getElementById('new-letters').addEventListener('click', function(e) {
@@ -68,6 +69,7 @@ function lettersToStrArray (divs) {
    for (i in divs) {
       letter_group[i] = divs[i].innerHTML.toLowerCase(); 
    }
+   all_letters = letter_group.slice();
 }
 
 //test lettering
@@ -85,17 +87,37 @@ function makeLetters() {
    return letters;
 }
 
-$(document).on("keypress", function (e) {
-   if(letter_group.includes(e.key)){
-    console.log(e.key);
+function reset(){
+   used_letters.splice(0, used_letters.length);
+   letter_group = all_letters.slice();
     let letters = document.getElementsByClassName('letters')[0];
-    letters.removeChild(letters.childNodes[letter_group.indexOf(e.key)]);
-    letter_group.splice(letter_group.indexOf(e.key),1);
-    let div = document.createElement('div');
-    div.className = 'letter-block';
-    div.innerHTML = e.key.toUpperCase();
-    let used_letters = document.getElementsByClassName('used-letters')[0];
-    used_letters.appendChild(div);
+    for (let i = 0; i < letter_group.length ; i++) {
+      let div = document.createElement('div');
+      div.className = 'letter-block';
+      div.innerHTML = letter_group[i].toUpperCase();
+      letters.appendChild(div);
+   }
+}
+
+$(document).on("keypress", function (e) {
+   if(e.keyCode == 13){
+      console.log("enter");
+      // console.log($('used-letters').children());
+      $('.used-letters').empty();
+      $('.letters').empty();
+      reset();
+      return;
+   }
+   if(letter_group.includes(e.key)){
+       console.log(e.key);
+       let letters = document.getElementsByClassName('letters')[0];
+       letters.removeChild(letters.childNodes[letter_group.indexOf(e.key)]);
+       letter_group.splice(letter_group.indexOf(e.key),1);
+       let div = document.createElement('div');
+       div.className = 'letter-block';
+       div.innerHTML = e.key.toUpperCase();
+       let used_letters = document.getElementsByClassName('used-letters')[0];
+       used_letters.appendChild(div);
 
    }
    else{
