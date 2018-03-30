@@ -2,6 +2,7 @@ let player_points = 0;
 var all_letters = new Array(7);
 var letter_group = new Array(7);
 var used_letters = new Array(7);
+var valid_words = [];
 
 
 document.getElementById('new-letters').addEventListener('click', function(e) {
@@ -15,7 +16,7 @@ document.getElementById('new-letters').addEventListener('click', function(e) {
    });
 });
 
-
+/*
 document.getElementById('word-input').addEventListener('keydown', function(e) {
 
    if (e.keyCode == 13) {
@@ -41,7 +42,7 @@ document.getElementById('word-input').addEventListener('keydown', function(e) {
       }
        this.value = '';
    }
-});
+});*/
 
 //test words
 function isWord(word) {
@@ -100,8 +101,13 @@ function reset(){
 }
 
 $(document).on("keypress", function (e) {
-   if(e.keyCode == 13){
+   if(e.keyCode == 13){   
+      console.log(used_letters.join(''));
       console.log("enter");
+      if(isWord(used_letters.join(''))){
+         player_points += used_letters.join('').length;
+         document.getElementById('points').innerHTML = player_points;
+      }
       // console.log($('used-letters').children());
       $('.used-letters').empty();
       $('.letters').empty();
@@ -116,8 +122,9 @@ $(document).on("keypress", function (e) {
        let div = document.createElement('div');
        div.className = 'letter-block';
        div.innerHTML = e.key.toUpperCase();
-       let used_letters = document.getElementsByClassName('used-letters')[0];
-       used_letters.appendChild(div);
+       let used = document.getElementsByClassName('used-letters')[0];
+       used.appendChild(div);
+       used_letters.push(e.key);
 
    }
    else{
