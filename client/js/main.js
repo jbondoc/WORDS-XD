@@ -18,35 +18,6 @@ document.getElementById('new-letters').addEventListener('click', function(e) {
    document.getElementById('points').innerHTML = player_points;
 });
 
-/*
-document.getElementById('word-input').addEventListener('keydown', function(e) {
-
-   if (e.keyCode == 13) {
-      let word = this.value.toLowerCase();
-      if(partOfLetters(letter_group, word)) {
-         
-         let result = document.getElementById('result-message');
-
-         if(isWord(word)) {
-            let points = isWord(word);
-            player_points += points;
-            result.innerHTML = '+' + points + ' points!';
-         } else {
-            result.innerHTML = "'" + word + "' is NOT a word!";
-         }
-
-         document.getElementById('points').innerHTML = player_points;
-
-
-         
-      } else {
-         result.innerHTML = word + ' is NOT a part of the letters!';
-      }
-       this.value = '';
-   }
-});*/
-
-//test words
 function isWord(word) {
    var isWord;
    var url = "https://api.datamuse.com/words?sp=" + word + "&max=1&md=d";
@@ -54,11 +25,8 @@ function isWord(word) {
    xhr.open("GET", url, false);
    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
-       var resp = JSON.parse(xhr.responseText);       
-       console.log(resp);
+       var resp = JSON.parse(xhr.responseText);    
        if(used_words.indexOf(word) <= -1 && resp.length > 0 && resp[0].hasOwnProperty('defs')){
-         console.log("LEN > 0");
-         console.log("word returned by api is " + resp[0].word);
          used_words.push(word);
          isWord = true;
        }
@@ -76,7 +44,6 @@ function partOfLetters(letters, word) {
    let str = word.split('');
    for (i in str) {
       if (letters.indexOf(str[i]) == -1) {
-         console.log('no', str[i], letters, word);
          return false;
       }
    }
@@ -119,21 +86,16 @@ function reset(){
 
 $(document).on("keypress", function (e) {
    if(e.keyCode == 13){   
-      console.log(used_letters.join(''));
-      console.log("enter");
       if(isWord(used_letters.join('')) == true){
-         console.log("IS A WORD");
          player_points += used_letters.join('').length;
          document.getElementById('points').innerHTML = player_points;
       }
-      // console.log($('used-letters').children());
       $('.used-letters').empty();
       $('.letters').empty();
       reset();
       return;
    }
    if(letter_group.includes(e.key)){
-       console.log(e.key);
        let letters = document.getElementsByClassName('letters')[0];
        letters.removeChild(letters.childNodes[letter_group.indexOf(e.key)]);
        letter_group.splice(letter_group.indexOf(e.key),1);
@@ -143,10 +105,6 @@ $(document).on("keypress", function (e) {
        let used = document.getElementsByClassName('used-letters')[0];
        used.appendChild(div);
        used_letters.push(e.key);
-
-   }
-   else{
-      console.log("not present");
    }
 });
 
