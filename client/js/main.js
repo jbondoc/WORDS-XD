@@ -16,6 +16,9 @@ document.getElementById('new-game-button').addEventListener('click', function(e)
    });
    player_points = 0;
    document.getElementById('points').innerHTML = player_points;
+   
+   used_letters.splice(0, used_letters.length);
+   $('.used-letters').empty();
 });
 
 function isWord(word) {
