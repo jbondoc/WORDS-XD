@@ -15,49 +15,7 @@ body {
     margin: 0;
 }
 
-.left-screen, .right-screen {
-    position: absolute;
-    display: inline-block;
-    height: 100%;
-    width: 50%;
-}
-.left-screen > *{
-    position: relative;
-}
-
-.left-screen {
-    left: 0;
-    text-align: center;
-}
-
-.right-screen {
-    right: 0;
-    text-align: center;
-}
-
-.input {
-    position: absolute;
-    top: 70%;
-    width: 100%;
-}
-
-.input input {
-    border-radius: 10px;
-    color: black;
-    border: 1px solid black;
-    padding: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    min-width: 400px;
-    width: 50%;
-}
-
-input:focus {
-    outline: none;
-}
-
-#new-letters {
+#new-game-button {
     top: 85%;
     border-radius: 10px;
     padding: 10px;
@@ -65,23 +23,21 @@ input:focus {
     background-color: #ce4545ce;
     font-weight:bold;
 }
-#new-letters:focus {
+#new-game-button:focus {
     outline: none;
 }
-#new-letters:hover {
+#new-game-button:hover {
     transform: translate(-5px, -2px);
     box-shadow: 2px 5px 5px 1px black;
 }
 
 .letters {
    position: relative;
-   top: 15%;
    text-align: center;
    width: 100%;
 }
 .used-letters {
    position: relative;
-   top: 15%;
    text-align: center;
    width: 100%;
 }
@@ -115,10 +71,4 @@ input:focus {
 
 #points {
    font-size: 3em;
-}
-
-#result-message {
-   position: relative;
-   top: 60%;
-   font-size: 4em;
 }

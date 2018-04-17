@@ -5,7 +5,7 @@ var used_letters = new Array(7);
 var used_words = [];
 
 
-document.getElementById('new-letters').addEventListener('click', function(e) {
+document.getElementById('new-game-button').addEventListener('click', function(e) {
    let letters = document.getElementsByClassName('letters')[0];
    letters.innerHTML = '';
    let letter_array = makeLetters();
