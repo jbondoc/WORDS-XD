@@ -16,7 +16,7 @@ document.getElementById('new-game-button').addEventListener('click', function(e)
    });
    player_points = 0;
    document.getElementById('points').innerHTML = player_points;
-   
+
    used_letters.splice(0, used_letters.length);
    $('.used-letters').empty();
 });
@@ -89,6 +89,7 @@ function reset(){
 
 $(document).on("keypress", function (e) {
    if(e.keyCode == 13){   
+      e.preventDefault();
       if(isWord(used_letters.join('')) == true){
          player_points += used_letters.join('').length;
          document.getElementById('points').innerHTML = player_points;
